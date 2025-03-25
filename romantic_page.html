@@ -1,0 +1,139 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Forever Yours - Elamadhi & JP</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Dancing Script', cursive;
+      background: linear-gradient(135deg, #1A202C, #2D3748, #4A5568);
+      color: pink;
+      overflow-x: hidden;
+    }
+    h1, h2, p {
+      text-align: center;
+    }
+    .hearts {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      overflow: hidden; z-index: -1;
+    }
+    .heart {
+      position: absolute;
+      width: 20px; height: 20px;
+      background-color: pink;
+      transform: rotate(45deg);
+      animation: float 6s infinite;
+    }
+    .heart::before, .heart::after {
+      content: ''; position: absolute;
+      width: 20px; height: 20px;
+      background-color: pink;
+      border-radius: 50%;
+    }
+    .heart::before { top: -10px; left: 0; }
+    .heart::after { left: -10px; top: 0; }
+    @keyframes float {
+      0% { transform: translateY(0) rotate(45deg); opacity: 1; }
+      100% { transform: translateY(-100vh) rotate(45deg); opacity: 0; }
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 15px; padding: 30px;
+      max-width: 800px; margin: 0 auto;
+    }
+    .gallery img {
+      width: 100%; border-radius: 10px;
+      cursor: pointer; transition: transform 0.3s;
+    }
+    .gallery img:hover { transform: scale(1.05); }
+    .popup {
+      display: none; position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.8);
+      align-items: center; justify-content: center;
+    }
+    .popup img {
+      max-width: 80%; max-height: 80%;
+      border: 5px solid pink; border-radius: 10px;
+    }
+    .quotes, .letter {
+      padding: 30px; max-width: 700px; margin: auto;
+    }
+    .letter {
+      background-color: rgba(0,0,0,0.5);
+      padding: 20px; border-radius: 15px; margin-top: 40px;
+    }
+    button.close {
+      position: absolute; top: 20px; right: 30px;
+      background: pink; border: none; padding: 10px 20px;
+      border-radius: 20px; cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<div class="hearts"></div>
+
+<h1>This space is ours 💖</h1>
+
+<div class="gallery">
+  <img src="image1.jpeg" alt="Memory 1" onclick="openPopup('image1.jpeg')">
+  <img src="image2.jpeg" alt="Memory 2" onclick="openPopup('image2.jpeg')">
+  <img src="image3.jpeg" alt="Memory 3" onclick="openPopup('image3.jpeg')">
+</div>
+
+<div class="quotes">
+  <h2>Cheesy Love Quotes</h2>
+  <p>In a world of billions, I found you.</p>
+  <p>Every love story is beautiful, but ours is my favorite.</p>
+  <p>You're my favorite hello and my hardest goodbye.</p>
+  <p>I fall for you a little more every day.</p>
+  <p>Love isn’t counted in days, but in moments like these. 💖</p>
+</div>
+
+<div class="letter">
+  <h2>Letter to Elamadhi</h2>
+  <p>My dearest Elamadhi,</p>
+  <p>Every heartbeat whispers your name, every breath feels lighter when you’re around. You’re my sunrise on dark days and my cozy night on cold evenings. I cherish every moment with you. I promise to stand by your side, to love you endlessly, and remind you every single day just how special you are.</p>
+  <p>Forever yours,<br>JP 💌</p>
+</div>
+
+<div id="popup" class="popup" onclick="closePopup()">
+  <button class="close">Close</button>
+  <img id="popup-img" src="" alt="Memory">
+</div>
+
+<script>
+  function createHearts() {
+    const heartsContainer = document.querySelector('.hearts');
+    for (let i = 0; i < 20; i++) {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.style.left = Math.random() * 100 + '%';
+      heart.style.top = Math.random() * 100 + '%';
+      heart.style.animationDelay = `${Math.random() * 6}s`;
+      heartsContainer.appendChild(heart);
+    }
+  }
+
+  function openPopup(src) {
+    document.getElementById('popup').style.display = 'flex';
+    document.getElementById('popup-img').src = src;
+  }
+
+  function closePopup() {
+    document.getElementById('popup').style.display = 'none';
+  }
+
+  createHearts();
+</script>
+
+</body>
+</html>
